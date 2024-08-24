@@ -26,6 +26,8 @@
 
 # 部署教程：
 
+## [视频教程](https://youtu.be/6UZXHfc3zEU)
+
 ## 一、需要准备的前提资料
 ### 1、首先注册一个Serv00账号，建议使用gmail邮箱注册，注册好会有一封邮箱上面写着你注册时的用户名和密码
 - 注册帐号地址：https://serv00.com
@@ -35,7 +37,7 @@
 ![image](https://github.com/user-attachments/assets/57c3ff7b-ae42-42c0-87ac-acb1b5bd177a)
 
 ### 2、加下群发送关键字 ssh 获取连接工具
-Telegram频道：https://t.me/AM_CLUBS
+Telegram频道：[@AM_CLUBS](https://t.me/AM_CLUBS)
 
 ## 二、安装前需准备的初始设置
 - 1、登入邮件里面发你的 DevilWEB webpanel 后面的网址，进入网站后点击 Change languag 把面板改成英文
@@ -67,6 +69,20 @@ bash <(curl -Ls https://raw.githubusercontent.com/amclubs/am-serv00-vmess/main/i
 ```
 (crontab -l; echo "*/12 * * * * pgrep -x "web" > /dev/null || nohup /home/${USER}/.vmess/web run -c /home/${USER}/.vmess/config.json >/dev/null 2>&1 &") | crontab -
 ```
+### 隧道保活命令情况如下
+- 默认隧道保活命令， <你的面板开通端口> 要修改你的端口
+```
+(crontab -l; echo "*/12 * * * * pgrep -x "bot" > /dev/null || nohup /home/${USER}/.vmess/bot tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile /home/${USER}/.vmess/boot.log --loglevel info --url http://localhost:<你的面板开通端口> >/dev/null 2>&1 &") | crontab -
+```
+- token固定隧道保活命令， <ARGO_AUTH> 要修改你的token
+```
+(crontab -l; echo "*/12 * * * * pgrep -x "bot" > /dev/null || nohup /home/${USER}/.vmess/bot tunnel --edge-ip-version auto --no-autoupdate --protocol http2 run --token <ARGO_AUTH> >/dev/null 2>&1 &") | crontab -
+```
+- json固定隧道保活命令
+```
+(crontab -l; echo "*/12 * * * * pgrep -x "bot" > /dev/null || nohup /home/${USER}/.vmess/bot tunnel --edge-ip-version auto --config tunnel.yml run >/dev/null 2>&1 &") | crontab -
+```
+
 
 - 查看保活crontab任务
 ```
@@ -91,7 +107,7 @@ HTTP：80，8080，8880，2052，2082，2086，2095
 
 HTTPS：443，2053，2083，2087，2096，8443
 
-- 4、请查看视频教程（Cloudflare的CDN设置域名回源进行加速）
+- 4、请查看视频教程（Cloudflare的CDN设置域名回源进行加速） [视频教程](https://youtu.be/6UZXHfc3zEU)
 - 5、[免费域名注册教程](https://youtu.be/cI36vtXuQrM)
 
 ## 五、卸载VMess
